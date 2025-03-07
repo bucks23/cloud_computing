@@ -6,19 +6,24 @@ def get_db_connection():
     conn = psycopg2.connect(
         host="localhost",
         database="test_db",  # Sesuaikan dengan nama database yang Anda buat
-        user="student",      # Sesuaikan dengan nama user
+        user="student",      # Sesuaikan dengan nama users
         password="1"  # Sesuaikan dengan password user
     )
     return conn
 
 # Inisialisasi Flask
+from flask import Flask, jsonify
+
 app = Flask(__name__)
 
 @app.route('/')
 def home():
     return jsonify({"message": "Hello from Flask!"})
 
-# Endpoint untuk membaca data dari tabel 'items'
+@app.route('/api/data')
+def get_data():
+    return jsonify({"data": "Hello from Flask API"})
+
 @app.route('/api/items', methods=['GET'])
 def get_items():
     conn = get_db_connection()
@@ -51,3 +56,4 @@ def create_item():
 # Jalankan Flask
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
