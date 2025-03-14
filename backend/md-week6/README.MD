@@ -83,3 +83,5 @@ Dengan menjalankan perintah ini, container akan berjalan di latar belakang, dan 
 
 ![](../img//Tugas6/TerminalDockerFlask.jpg)
 
+Didapati bahwa Docker bisa menjalankan Localhost untuk flask
+
