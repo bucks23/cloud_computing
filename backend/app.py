@@ -1,6 +1,6 @@
 import psycopg2
-from flask import Flask, jsonify
-
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 
 # Fungsi untuk koneksi ke database PostgreSQL
@@ -13,9 +13,8 @@ def get_db_connection():
     )
     return conn
 
-from flask_cors import CORS
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 @app.route('/')
 def home():

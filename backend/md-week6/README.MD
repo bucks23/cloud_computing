@@ -35,7 +35,6 @@ Container akan membuka port 5000. Port ini biasanya digunakan untuk aplikasi web
 ## CMD ["python", "app.py"]
 Perintah ini menjalankan aplikasi Python dengan menjalankan file app.py saat container dijalankan. Ini adalah perintah default yang akan dieksekusi ketika container di-start.
 
-Dengan Dockerfile ini, Anda dapat membangun image Docker untuk aplikasi backend Python dan menjalankannya di lingkungan container yang terisolasi.
 
 # 3. Menyiapkan Requirement
 
@@ -44,7 +43,7 @@ Dengan Dockerfile ini, Anda dapat membangun image Docker untuk aplikasi backend 
 flask==2.3.2: Menginstal Flask versi 2.3.2.
 
 flask-cors==4.0.0: Menginstal Flask-CORS versi 4.0.0 untuk mengaktifkan CORS.
-
+    
 psycopg2-binary==2.9.6: Menginstal Psycopg2 versi 2.9.6 (binary) untuk berinteraksi dengan PostgreSQL.
 
 # 4. Build Docker Image
