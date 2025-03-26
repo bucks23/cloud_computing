@@ -1,29 +1,27 @@
+import os
 import psycopg2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-
 # Fungsi untuk koneksi ke database PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
-        host="localhost",
-        database="test_db",  # Sesuaikan dengan nama database yang Anda buat
-        user="student",      # Sesuaikan dengan nama users
-        password="1"  # Sesuaikan dengan password user
+        host=os.environ.get("DB_HOST", "localhost"),
+        database=os.environ.get("DB_NAME", "test_db"),
+        user=os.environ.get("DB_USER", "student"),
+        password=os.environ.get("DB_PASSWORD", "password")
     )
     return conn
 
+# Inisialisasi Flask
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+CORS (app)
 
 @app.route('/')
 def home():
     return jsonify({"message": "Hello from Flask!"})
 
-@app.route('/api/data')
-def get_data():
-    return jsonify({"data": "Hello from Flask API"})
-
+# Endpoint untuk membaca data dari tabel 'items'
 @app.route('/api/items', methods=['GET'])
 def get_items():
     conn = get_db_connection()
@@ -56,4 +54,3 @@ def create_item():
 # Jalankan Flask
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
-
